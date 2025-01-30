@@ -1,36 +1,25 @@
 /* General Styles */
-body {
-  font-family: 'Arial', sans-serif;
+body, html {
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Arial', sans-serif;
 }
 
-a {
-  text-decoration: none;
-  color: #007BFF;
-  transition: color 0.3s;
-}
-
-a:hover {
-  color: #0056b3;
-}
-
-/* Navbar Styles */
 .navbar {
   background-color: #284ae2; /* Blue background */
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 10px 20px;
-  margin: 10px auto; /* Add margin to create space at the top */
-  width: calc(100% - 40px); /* Ensure the navbar doesn't fill the entire width */
-  max-width: 1200px; /* Optional: limit the maximum width */
-  border-radius: 10px; /* Optional: add rounded corners */
+  margin: 10px auto;
+  width: calc(100% - 40px);
+  max-width: 1200px;
+  border-radius: 10px;
   display: flex;
-  justify-content: center; /* Center items horizontally */
-  align-items: center; /* Center items vertically */
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar a {
@@ -49,12 +38,13 @@ a:hover {
 
 /* Header Styles */
 header {
-  background: url('images/header-bg.jpg') no-repeat center center/cover;
+  position: relative;
   color: white;
   text-align: center;
-  padding: 100px 20px;
-  position: relative;
+  padding: 50px 20px; /* Adjust padding as needed */
   overflow: hidden;
+  height: 70vh; /* Adjust height as needed */
+  border-radius: 10px;
 }
 
 header::after {
@@ -65,14 +55,29 @@ header::after {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3); /* Slightly transparent overlay */
+  z-index: 1;
+}
+
+header img, header video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+header h1, header p, .cta-button {
+  position: relative;
+  z-index: 2;
+  padding-top: 20px; /* Add padding to move text downward */
 }
 
 header h1 {
   font-family: 'Georgia', serif;
   font-size: 3.5em;
   margin: 0;
-  position: relative;
-  z-index: 1;
   animation: fadeInDown 1s ease-in-out;
 }
 
@@ -80,8 +85,6 @@ header p {
   font-family: 'Verdana', sans-serif;
   font-size: 1.5em;
   margin: 10px 0 20px;
-  position: relative;
-  z-index: 1;
   animation: fadeInUp 1s ease-in-out;
 }
 
@@ -94,8 +97,7 @@ header p {
   border-radius: 5px;
   font-size: 1.2em;
   transition: background-color 0.3s, transform 0.3s;
-  position: relative;
-  z-index: 1;
+  text-decoration: none;
 }
 
 .cta-button:hover {
@@ -163,6 +165,12 @@ header p {
   display: inline-block;
   width: calc(33% - 20px);
   vertical-align: top;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.highlight-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .highlight-box h3 {
@@ -177,7 +185,7 @@ header p {
   line-height: 1.6;
 }
 
-/* Blog Page Styles */
+/* Blog Section Styles */
 .blog-posts {
   padding: 50px 20px;
   text-align: center;
@@ -202,6 +210,12 @@ header p {
   margin: 20px 0;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.post:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .post h3 {
@@ -253,6 +267,12 @@ header p {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   flex: 1;
   max-width: 30%;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.about-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .about-box h2 {
@@ -328,6 +348,12 @@ header p {
 
 .testimonial {
   margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.testimonial:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .testimonial img {
@@ -341,6 +367,13 @@ header p {
 blockquote {
   font-style: italic;
   color: #555;
+}
+
+.testimonial p {
+  font-family: 'Verdana', sans-serif;
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #333;
 }
 
 /* Contact Page Styles */
@@ -436,14 +469,14 @@ footer p {
   }
 }
 
-/* Media Queries for Responsiveness */
+/* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
-      flex-direction: column;
+      flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
   }
 
   .navbar a {
-      margin: 5px 0;
+      margin: 5px 10px; /* Adjust margin to fit items better */
   }
 
   header h1 {
@@ -469,8 +502,9 @@ footer p {
   }
 
   .about-container {
-      flex-direction: column;
-      align-items: center;
+      flex-direction: row; /* Ensure the about section remains horizontal */
+      flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+      justify-content: space-between; /* Adjust spacing between items */
   }
 }
 
